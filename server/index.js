@@ -192,7 +192,7 @@ class Peer {
             os: ua.os.name,
             browser: ua.browser.name,
             type: ua.device.type,
-            displayName: 'Hello World'
+            displayName: uniqueNamesGenerator({ length: 2, separator: ' ', dictionaries: [colors, animals], style: 'capital' })
         };
     }
 
