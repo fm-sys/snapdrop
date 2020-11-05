@@ -534,7 +534,7 @@ document.copy = text => {
 
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/client/service-worker.js')
+    navigator.serviceWorker.register('/snapdrop/client/service-worker.js')
         .then(serviceWorker => {
             console.log('Service Worker registered');
             window.serviceWorker = serviceWorker
