@@ -116,7 +116,7 @@ class PeerUI {
     }
 
     _name() {
-        return this._peer.name.displayName;
+        return "My Device";//this._peer.name.displayName;
     }
 
     _icon() {
