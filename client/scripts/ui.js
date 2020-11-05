@@ -534,7 +534,7 @@ document.copy = text => {
 
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('/client/service-worker.js')
         .then(serviceWorker => {
             console.log('Service Worker registered');
             window.serviceWorker = serviceWorker
@@ -628,9 +628,3 @@ Notifications permission has been blocked
 as the user has dismissed the permission prompt several times. 
 This can be reset in Page Info 
 which can be accessed by clicking the lock icon next to the URL.`;
-
-document.body.onclick = e => { // safari hack to fix audio 
-    document.body.onclick = null;
-    if (!(/.*Version.*Safari.*/.test(navigator.userAgent))) return;
-    blop.play();
-}
