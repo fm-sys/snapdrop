@@ -188,6 +188,7 @@ class PeerUI {
     _onTouchEnd(e) {
         if (Date.now() - this._touchStart < 500) {
             clearTimeout(this._touchTimer);
+            Events.fire('recipient-shortclicked', this._peer.id);
         } else { // this was a long tap
             if (e) e.preventDefault();
             Events.fire('text-recipient', this._peer.id);
