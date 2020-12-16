@@ -55,8 +55,8 @@ class ServerConnection {
     }
 
     _endpoint() {
-        // hack to detect if deployment or development environment
-        const protocol = location.protocol.startsWith('https') ? 'wss' : 'ws';
+        // hack to detect if deployment or development environment (edit: hack disabled to also reach online endpoint in a development environment)
+        const protocol = 'wss'; // location.protocol.startsWith('https') ? 'wss' : 'ws';
         const webrtc = window.isRtcSupported ? '/webrtc' : '/fallback';
         const url = protocol + '://snapdrop.net/server' + webrtc;
         return url;
