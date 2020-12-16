@@ -1,4 +1,5 @@
 const parser = require('ua-parser-js');
+const { uniqueNamesGenerator, animals, colors } = require('unique-names-generator');
 
 class SnapdropServer {
 
@@ -35,7 +36,7 @@ class SnapdropServer {
         } catch (e) {
             return; // TODO: handle malformed JSON
         }
-
+        
         switch (message.type) {
             case 'disconnect':
                 this._leaveRoom(sender);
@@ -185,22 +186,13 @@ class Peer {
     }
 
     _setName(req) {
-        let ua = parser(req.headers['user-agent']);
-
-
-        let displayName = ua.os.name.replace('Mac OS', 'Mac') + ' ';
-        if (ua.device.model) {
-            displayName += ua.device.model;
-        } else {
-            displayName += ua.browser.name;
-        }
-
+        var ua = parser(req.headers['user-agent']);
         this.name = {
             model: ua.device.model,
             os: ua.os.name,
             browser: ua.browser.name,
             type: ua.device.type,
-            displayName: displayName
+            displayName: uniqueNamesGenerator({ length: 2, separator: ' ', dictionaries: [colors, animals], style: 'capital' })
         };
     }
 
