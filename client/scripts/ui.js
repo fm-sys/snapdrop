@@ -474,9 +474,7 @@ class WebShareTargetUI {
 
         let shareTargetText = title ? title : '';
         shareTargetText += text ? shareTargetText ? ' ' + text : text : '';
-        
-        if(url) shareTargetText = url; // We share only the Link - no text. Because link-only text becomes clickable.
-
+        shareTargetText += url ? shareTargetText ? ' ' + url : url : '';
         if (!shareTargetText) return;
         window.shareTargetText = shareTargetText;
         history.pushState({}, 'URL Rewrite', '/');
