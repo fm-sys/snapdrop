@@ -262,7 +262,7 @@ x-peer[transfer] x-icon {
 }
 
 x-peer[transfer] .status:before {
-    content: 'Transferring...';
+    content: 'Transfering...';
 }
 
 x-peer x-icon {
