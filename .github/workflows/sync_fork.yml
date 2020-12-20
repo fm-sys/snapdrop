@@ -16,4 +16,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           base: patched_master
           head: RobinLinus:master
-          pr_title: Update Snapdrop Fork
+          pr_title: "Update Snapdrop Fork" 
