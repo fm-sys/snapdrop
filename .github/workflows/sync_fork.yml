@@ -15,6 +15,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: RobinLinus
-          base: master
+          base: patched_master
           head: master
           pr_title: "Update Snapdrop Fork" 
