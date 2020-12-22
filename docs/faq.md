@@ -26,10 +26,25 @@ We are not trying to optimize for some edge-cases. We are optimizing the user fl
 
 
 ### Snapdrop is awesome! How can I support it? 
-* [Donate via PayPal to help cover the server costs](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=74D2NE84JHCWG&source=url)
+* [Donate via PayPal to help cover the server costs](https://www.paypal.com/donate/?hosted_button_id=FTP9DXUR7LA7Q)
 * [File bugs, give feedback, submit suggestions](https://github.com/RobinLinus/snapdrop/issues)
 * Share Snapdrop on your social media.
 * Fix bugs and make a pull request. 
 * Do security analysis and suggestions
+
+
+
+## Third-Party Apps
+Here's a list of some third-party Snapdrop apps:
+
+1. [Snapdrop Desktop App](https://github.com/infin1tyy/snapdrop-desktop) built on top of Electron. (Thanks to [Infin1tyy!](https://github.com/infin1tyy/)).
+
+1. [Snapdrop Android App](https://github.com/fm-sys/snapdrop-android) allows you to also send files directly from other apps via the share action.
+
+1. [Snapdrop Flutter App](https://github.com/congnguyendinh0/snapdrop_flutter)
+
+1. Feel free to make one :)
+
+
 
 [< Back](/README.md)

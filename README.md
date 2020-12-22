@@ -4,19 +4,21 @@
 
 
 #### Snapdrop is built with the following awesome technologies:
-* Vanilla HTML5 / ES6 / CSS3  
-* Progressive Web App
-* [WebRTC](http://webrtc.org/)
-* [WebSockets](http://www.websocket.org/)
-* [NodeJS](https://nodejs.org/en/)
-* [Material Design](https://material.google.com/)
+* Vanilla HTML5 / ES6 / CSS3 frontend
+* [WebRTC](http://webrtc.org/) / [WebSockets](http://www.websocket.org/)
+* [NodeJS](https://nodejs.org/en/) backend
+* [Progressive Web App](https://de.wikipedia.org/wiki/Progressive_Web_App)
 
-> If you want to self-host your own instance, [you can with docker.](/docs/local-dev.md)
+
+Have any questions? Read our [FAQ](/docs/faq.md).
+
+You can [host your own instance with docker](/docs/local-dev.md).
+
 
 ## Support the Snapdrop Community
 Snapdrop is free. Still, we have to pay for the server. If you want to contribute, please use PayPal:
 
-[<img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif">](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=74D2NE84JHCWG&source=url)
+[<img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif">](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FTP9DXUR7LA7Q&source=url)
 
 or Bitcoin:
 
@@ -26,16 +28,5 @@ Alternatively, you can become a [Github Sponsor](https://github.com/sponsors/Rob
 
 Thanks a lot for supporting free and open software!
 
-
-> Have any questions? You can read our [FAQ](/docs/faq.md)
-
-
-
-## Apps
-1. [Snapdrop PWA](/docs/faq.md) <!-- Don't know how to do a direct link -->
-
- 1. [Snapdrop Desktop App](https://github.com/infin1tyy/snapdrop-desktop) built on top of Electron. (Thanks to [Infin1tyy!](https://github.com/infin1tyy/)).
-
- 1. Feel free to make one :)
 
 

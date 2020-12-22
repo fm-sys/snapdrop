@@ -20,7 +20,13 @@ class SnapdropServer {
         this._keepAlive(peer);
 
         // send displayName
-        this._send(peer, { type: 'displayName', message: peer.name.displayName });
+        this._send(peer, {
+            type: 'display-name',
+            message: {
+                displayName: peer.name.displayName,
+                deviceName: peer.name.deviceName
+            }
+        });
     }
 
     _onHeaders(headers, response) {
@@ -36,7 +42,7 @@ class SnapdropServer {
         } catch (e) {
             return; // TODO: handle malformed JSON
         }
-        
+
         switch (message.type) {
             case 'disconnect':
                 this._leaveRoom(sender);
@@ -186,13 +192,31 @@ class Peer {
     }
 
     _setName(req) {
-        var ua = parser(req.headers['user-agent']);
+        let ua = parser(req.headers['user-agent']);
+
+
+        let deviceName = ua.os.name.replace('Mac OS', 'Mac') + ' ';
+        if (ua.device.model) {
+            deviceName += ua.device.model;
+        } else {
+            deviceName += ua.browser.name;
+        }
+
+        const displayName = uniqueNamesGenerator({
+            length: 2,
+            separator: ' ',
+            dictionaries: [colors, animals],
+            style: 'capital',
+            seed: this.id.hashCode()
+        })
+
         this.name = {
             model: ua.device.model,
             os: ua.os.name,
             browser: ua.browser.name,
             type: ua.device.type,
-            displayName: uniqueNamesGenerator({ length: 2, separator: ' ', dictionaries: [colors, animals], style: 'capital' })
+            deviceName,
+            displayName
         };
     }
 
@@ -230,5 +254,17 @@ class Peer {
         return uuid;
     };
 }
+
+Object.defineProperty(String.prototype, 'hashCode', {
+  value: function() {
+    var hash = 0, i, chr;
+    for (i = 0; i < this.length; i++) {
+      chr   = this.charCodeAt(i);
+      hash  = ((hash << 5) - hash) + chr;
+      hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+  }
+});
 
 const server = new SnapdropServer(process.env.PORT || 3000);

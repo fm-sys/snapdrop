@@ -4,6 +4,8 @@
     --icon-size: 24px;
     --primary-color: #4285f4;
     --peer-width: 120px;
+    color-scheme: light dark;
+    /* both supported */
 }
 
 
@@ -50,6 +52,10 @@ body {
     justify-content: center;
 }
 
+.grow {
+    flex-grow: 1;
+}
+
 .full {
     position: absolute;
     top: 0;
@@ -77,9 +83,7 @@ header {
 /* Typography */
 
 body {
-    background: #fafafa;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    color: #333;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -145,14 +149,14 @@ a {
 
 [shadow="1"] {
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
-    0 1px 8px 0 rgba(0, 0, 0, 0.12),
-    0 3px 3px -2px rgba(0, 0, 0, 0.4);
+        0 1px 8px 0 rgba(0, 0, 0, 0.12),
+        0 3px 3px -2px rgba(0, 0, 0, 0.4);
 }
 
 [shadow="2"] {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-    0 1px 10px 0 rgba(0, 0, 0, 0.12),
-    0 2px 4px -1px rgba(0, 0, 0, 0.4);
+        0 1px 10px 0 rgba(0, 0, 0, 0.12),
+        0 2px 4px -1px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -256,13 +260,19 @@ x-peer[transfer] x-icon {
     transform: scale(1);
 }
 
-.status {
+.status,
+.device-name {
     height: 18px;
     opacity: 0.7;
 }
 
 x-peer[transfer] .status:before {
-    content: 'Transfering...';
+    content: 'Transferring...';
+}
+
+x-peer:not([transfer]) .status,
+x-peer[transfer] .device-name {
+    display: none;
 }
 
 x-peer x-icon {
@@ -273,6 +283,7 @@ x-peer x-icon {
     0% {
         transform: scale(0.7);
     }
+
     40% {
         transform: scale(1.2);
     }
@@ -293,6 +304,7 @@ footer {
     right: 0;
     align-items: center;
     padding: 0 0 16px 0;
+    text-align: center;
 }
 
 footer .logo {
@@ -351,11 +363,17 @@ x-dialog .row-reverse>.button {
     margin-left: 8px;
 }
 
-x-dialog a{
+x-dialog a {
     color: var(--primary-color);
 }
 
 /* Receive Dialog */
+#receiveDialog .row {
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+/* Receive Text Dialog */
 
 #receiveTextDialog #text {
     width: 100%;
@@ -366,9 +384,22 @@ x-dialog a{
     -webkit-user-select: all;
     -moz-user-select: all;
     user-select: all;
+    white-space: pre;
 }
 
+#receiveTextDialog #text a {
+    cursor: pointer;
+}
 
+#receiveTextDialog #text a:hover {
+    text-decoration: underline;
+}
+
+#receiveTextDialog h3 {
+    /* Select the received text when double-clicking the dialog */
+    user-select: none;
+    pointer-events: none;
+}
 
 /* Button */
 
@@ -450,17 +481,19 @@ button::-moz-focus-inner {
 
 /* Text Input */
 
-input {
+textarea {
     width: 100%;
     box-sizing: border-box;
     border: none;
     outline: none;
     padding: 16px 24px;
-    background: #f1f3f4;
-    border-radius: 50px;
+    border-radius: 16px;
     margin: 8px 0;
     line-height: 16px;
     font-size: 14px;
+    font-family: inherit;
+    resize: none;
+    background: #f1f3f4;
 }
 
 
@@ -505,7 +538,7 @@ input {
 }
 
 /* Hack such that initial scale(0) isn't animated */
-#about x-background{
+#about x-background {
     will-change: transform;
     transition: transform 800ms cubic-bezier(0.77, 0, 0.175, 1);
 }
@@ -551,6 +584,11 @@ input {
 }
 
 
+/* Generic placeholder */
+[placeholder]:empty:before {
+    content: attr(placeholder);
+}
+
 /* Toast */
 
 .toast-container {
@@ -592,6 +630,7 @@ x-instructions {
     opacity: 0.5;
     transition: opacity 300ms;
     z-index: -1;
+    text-align: center;
 }
 
 x-instructions:before {
@@ -629,6 +668,7 @@ screen and (min-width: 1100px) {
 }
 
 @supports (-webkit-overflow-scrolling: touch) {
+
     /* CSS specific to iOS devices */
     html {
         position: fixed;
@@ -636,5 +676,55 @@ screen and (min-width: 1100px) {
 
     x-instructions:before {
         content: attr(mobile);
+    }
+}
+
+/* 
+    Color Themes 
+*/
+
+/* Default colors */
+:root {
+    --text-color: #333;
+    --bg-color: #fff;
+    --input-bg-color: #f1f3f4;
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+x-dialog x-paper {
+    background-color: var(--bg-color);
+}
+
+textarea {
+    color: var(--text-color);
+    background-color: var(--input-bg-color);
+}
+
+/* Dark theme colors */
+body.dark-theme {
+    --text-color: #eee;
+    --bg-color: #121212;
+    --input-bg-color: #333;
+}
+
+/* Styles for users who prefer dark mode at the OS level */
+@media (prefers-color-scheme: dark) {
+
+    /* defaults to dark theme */
+    body {
+        --text-color: #eee;
+        --bg-color: #121212;
+        --input-bg-color: #333;
+    }
+
+    /* Override dark mode with light mode styles if the user decides to swap */
+    body.light-theme {
+        --text-color: #333;
+        --bg-color: #fafafa;
+        --input-bg-color: #f1f3f4;
     }
 }
