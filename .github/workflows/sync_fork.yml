@@ -14,6 +14,7 @@ jobs:
       - uses: tgymnich/fork-sync@v1.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: RobinLinus
           base: master
           head: master
           pr_title: "Update Snapdrop Fork" 
