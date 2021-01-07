@@ -1,4 +1,4 @@
-name: Sync Fork
+name: Adopt newest website design
 
 on:
   schedule:
