@@ -40,6 +40,7 @@ class ServerConnection {
                 break;
             case 'ping':
                 this.send({ type: 'pong' });
+                Events.fire('serverconnection-active', msg);
                 break;
             case 'display-name':
                 Events.fire('display-name', msg);
