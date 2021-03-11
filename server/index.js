@@ -208,12 +208,20 @@ class Peer {
         let ua = parser(req.headers['user-agent']);
 
 
-        let deviceName = ua.os.name.replace('Mac OS', 'Mac') + ' ';
+        let deviceName = '';
+        
+        if (ua.os && ua.os.name) {
+            deviceName = ua.os.name.replace('Mac OS', 'Mac') + ' ';
+        }
+        
         if (ua.device.model) {
             deviceName += ua.device.model;
         } else {
             deviceName += ua.browser.name;
         }
+
+        if(!deviceName)
+            deviceName = 'Unknown Device';
 
         const displayName = uniqueNamesGenerator({
             length: 2,
