@@ -107,6 +107,13 @@ h3 {
     margin: 16px 0;
 }
 
+h4 {
+    font-size: 16px;
+    font-weight: 400;
+	letter-spacing: .5em;
+    margin: 16px 0;
+}
+
 .font-subheading {
     font-size: 16px;
     font-weight: 400;
