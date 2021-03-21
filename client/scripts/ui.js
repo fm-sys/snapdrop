@@ -367,8 +367,8 @@ class ReceiveTextDialog extends Dialog {
         window.blop.play();
     }
 
-    async _onCopy() {
-        await navigator.clipboard.writeText(this.$text.textContent);
+    _onCopy() {
+        SnapdropAndroid.copyToClipboard(this.$text.textContent);
         Events.fire('notify-user', 'Copied to clipboard');
     }
 }
