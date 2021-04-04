@@ -165,6 +165,7 @@ class PeerUI {
             this.setProgress(0);
             this.$el.removeAttribute('transfer');
         }
+        SnapdropAndroid.setProgress(progress);
     }
 
     _onDrop(e) {
