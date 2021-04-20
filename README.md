@@ -1,4 +1,4 @@
-# Fork of Snapdrop 
+# (Meanwhile unused) Fork of Snapdrop.net 
 
 [Snapdrop](https://snapdrop.net): local file sharing in your browser. Inspired by Apple's Airdrop.
 
