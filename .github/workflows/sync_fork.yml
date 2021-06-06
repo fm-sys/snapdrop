@@ -1,8 +1,8 @@
 name: Adopt website changes
 
 on:
-  schedule:
-    - cron: '0 */12 * * *' # twice a day 
+  # schedule:
+   # - cron: '0 */12 * * *' # twice a day 
   workflow_dispatch: # on button click
 
 jobs:
