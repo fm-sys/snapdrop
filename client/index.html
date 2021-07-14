@@ -12,6 +12,9 @@
     <meta name="apple-mobile-web-app-capable" content="no">
     <meta name="apple-mobile-web-app-title" content="Snapdrop">
     <!-- Descriptions -->
+    <meta name="description" content="Instantly share images, videos, PDFs, and links with people nearby. Peer2Peer and Open Source. No Setup, No Signup.">
+    <meta name="keywords" content="File, Transfer, Share, Peer2Peer">
+    <meta name="author" content="RobinLinus">
     <meta property="og:title" content="Snapdrop">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://snapdrop.net/">
@@ -77,9 +80,12 @@
                 <h3>File Received</h3>
                 <div class="font-subheading" id="fileName">Filename</div>
                 <div class="font-body2" id="fileSize"></div>
+                <div class='preview' style="visibility: hidden;">
+                    <img id='img-preview' src="">
+                </div>
                 <div class="row">
                     <label for="autoDownload" class="grow">Ask to save each file before downloading</label>
-                    <input type="checkbox" id="autoDownload" checked=""> 
+                    <input type="checkbox" id="autoDownload" checked="">
                 </div>
                 <div class="row-reverse">
                     <a class="button" close id="download" title="Download File" autofocus>Save</a>
@@ -94,7 +100,7 @@
             <x-background class="full center">
                 <x-paper shadow="2">
                     <h3>Send a Message</h3>
-                    <textarea id="textInput" placeholder="Send a message" autocomplete="off" autofocus></textarea>
+                    <div id="textInput" class="textarea" role="textbox" placeholder="Send a message" autocomplete="off" autofocus contenteditable></div>
                     <div class="row-reverse">
                         <button class="button" type="submit" close>Send</button>
                         <a class="button" close>Cancel</a>
@@ -218,8 +224,8 @@
     <!-- no script -->
     <noscript>
         <x-noscript class="full center column">
-            <h1>Enable Javascript</h1>
-            <h3>Snapdrop works only with Javascript</h3>
+            <h1>Enable JavaScript</h1>
+            <h3>Snapdrop works only with JavaScript</h3>
         </x-noscript>
         <style>
         x-noscript {

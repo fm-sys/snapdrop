@@ -5,9 +5,7 @@
     --primary-color: #4285f4;
     --peer-width: 120px;
     color-scheme: light dark;
-    /* both supported */
 }
-
 
 /* Layout */
 
@@ -384,7 +382,7 @@ x-dialog a {
     -webkit-user-select: all;
     -moz-user-select: all;
     user-select: all;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 #receiveTextDialog #text a {
@@ -481,19 +479,22 @@ button::-moz-focus-inner {
 
 /* Text Input */
 
-textarea {
-    width: 100%;
+.textarea {
     box-sizing: border-box;
     border: none;
     outline: none;
     padding: 16px 24px;
     border-radius: 16px;
     margin: 8px 0;
-    line-height: 16px;
     font-size: 14px;
     font-family: inherit;
-    resize: none;
     background: #f1f3f4;
+    display: block;
+    overflow: auto;
+    resize: none;
+    min-height: 40px;
+    line-height: 16px;
+    max-height: 300px;
 }
 
 
@@ -667,9 +668,12 @@ screen and (min-width: 1100px) {
     }
 }
 
+/* 
+    iOS specific styles
+*/
 @supports (-webkit-overflow-scrolling: touch) {
 
-    /* CSS specific to iOS devices */
+    
     html {
         position: fixed;
     }
@@ -679,37 +683,46 @@ screen and (min-width: 1100px) {
     }
 }
 
-/* 
-    Color Themes 
+/*
+    Color Themes
 */
 
 /* Default colors */
-:root {
+body {
     --text-color: #333;
     --bg-color: #fff;
-    --input-bg-color: #f1f3f4;
-}
-
-body {
-    color: var(--text-color);
-    background-color: var(--bg-color);
-}
-
-x-dialog x-paper {
-    background-color: var(--bg-color);
-}
-
-textarea {
-    color: var(--text-color);
-    background-color: var(--input-bg-color);
+    --bg-color-secondary: #f1f3f4;
 }
 
 /* Dark theme colors */
 body.dark-theme {
     --text-color: #eee;
     --bg-color: #121212;
-    --input-bg-color: #333;
+    --bg-color-secondary: #333;
 }
+
+/* Colored Elements */
+body {
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.5s ease;
+}
+
+x-dialog x-paper {
+    background-color: var(--bg-color);
+}
+
+.textarea {
+    color: var(--text-color);
+    background-color: var(--bg-color-secondary);
+}
+/* Image Preview */
+#img-preview{
+    max-width:100%;
+    max-height:100%;
+   
+}
+
 
 /* Styles for users who prefer dark mode at the OS level */
 @media (prefers-color-scheme: dark) {
@@ -718,13 +731,26 @@ body.dark-theme {
     body {
         --text-color: #eee;
         --bg-color: #121212;
-        --input-bg-color: #333;
+        --bg-color-secondary: #333;
     }
 
     /* Override dark mode with light mode styles if the user decides to swap */
     body.light-theme {
         --text-color: #333;
         --bg-color: #fafafa;
-        --input-bg-color: #f1f3f4;
+        --bg-color-secondary: #f1f3f4;
     }
 }
+
+
+/* 
+    Edge specific styles
+*/
+@supports (-ms-ime-align: auto) {
+
+    html,
+    body {
+        overflow: hidden;
+    }
+}
+

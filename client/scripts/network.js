@@ -58,7 +58,7 @@ class ServerConnection {
         // hack to detect if deployment or development environment
         const protocol = location.protocol.startsWith('https') ? 'wss' : 'ws';
         const webrtc = window.isRtcSupported ? '/webrtc' : '/fallback';
-        const url = protocol + '://' + location.host + '/server' + webrtc;
+        const url = protocol + '://' + location.host + location.pathname + 'server' + webrtc;
         return url;
     }
 
@@ -252,7 +252,10 @@ class RTCPeer extends Peer {
     }
 
     _openChannel() {
-        const channel = this._conn.createDataChannel('data-channel', { reliable: true });
+        const channel = this._conn.createDataChannel('data-channel', { 
+            ordered: true,
+            reliable: true // Obsolete. See https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/reliable
+        });
         channel.binaryType = 'arraybuffer';
         channel.onopen = e => this._onChannelOpened(e);
         this._conn.createOffer().then(d => this._onDescription(d)).catch(e => this._onError(e));
@@ -509,6 +512,7 @@ class Events {
 
 
 RTCPeer.config = {
+    'sdpSemantics': 'unified-plan',
     'iceServers': [{
         urls: 'stun:stun.l.google.com:19302'
     }]
